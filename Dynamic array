@@ -1,0 +1,33 @@
+#include <iostream>
+#include <stdio.h>
+#include "windows.h"
+#include "shellapi.h"
+#include "math.h"
+
+using namespace std;
+
+int main(){
+    int M1size;
+    cin >> M1size;
+    int** M1 = new int* [M1size];
+    for (int i = 0; i < M1size; i++) {
+        M1[i] = new int[M1size];
+        for (int j = 0; j < M1size; j++) {
+            M1[i][j] = 1;
+        }
+    }
+
+    for (int i = 0; i < M1size; i++){
+        for (int j = 0; j < M1size; j++){
+            cout << M1[i][j];
+        }
+        cout << endl;
+    }
+    for (int i = 0; i < M1size; i++)
+    {
+        delete[] M1[i];
+    }
+    delete[] M1;
+    system("pause>NULL");
+    return 0;
+}
