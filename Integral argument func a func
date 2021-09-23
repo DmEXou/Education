@@ -1,0 +1,25 @@
+#include <iostream>
+#include <stdio.h>
+#include "windows.h"
+
+using namespace std;
+
+double Intergral(double (*func)(double),double a, double b) {
+    int n = 10000;
+    double dx = (b - a) / n;
+    double s = (func(a) + func(b)) * dx / 2;
+    for (int i = 0; i < n-1; i++){
+        s += func(a + dx * i) * dx;
+    }
+    return s;
+}
+
+double FUNC(double x) {
+    return x+x;
+}
+
+int main(){
+    cout << Intergral(FUNC, 0, 1);
+    system("pause>NULL");
+    return 0;
+}
