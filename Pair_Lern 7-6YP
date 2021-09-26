@@ -95,3 +95,8 @@ int main() {
 	for (int document_id = 0; document_id < document_count; ++document_id) {
 		AddDocument(word_to_documents, stop_words, document_id, ReadLine());
 	}
+	const string query = ReadLine();
+        for (auto [document_id, relevance] : FindDocuments(word_to_documents, stop_words, query)) {
+            cout << "{ document_id = "s << document_id << ", relevance = "s << relevance << " }"s << endl;
+        }
+}
