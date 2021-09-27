@@ -1,0 +1,23 @@
+#include <iostream>
+#include <set>
+#include <string>
+#include <numeric>
+
+using namespace std;
+
+auto SummStopWords(string accumulated, string additional){
+    return accumulated + " -" + additional;
+} 
+
+string AddStopWords(const string& query, const set<string>& stop_words) {
+    auto tmp = accumulate(stop_words.begin(), stop_words.end(), string{}, SummStopWords);
+    string tmp_query = query + tmp;
+    return tmp_query;
+}
+
+int main(){
+    string query_main = {"some tasty oranges"};
+    set <string> stop_words_main = {"of", "in"};
+    cout << AddStopWords(query_main,stop_words_main);
+    return 0;
+}
