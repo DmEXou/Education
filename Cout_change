@@ -1,0 +1,97 @@
+#include <iostream>
+#include <vector>
+#include <set>
+#include <map>
+
+using namespace std;
+
+template <typename Term>
+
+ostream& operator<<(ostream& out, const set<Term>& container) {
+    out << "{";
+    for (const Term& element : container) {
+        if (element == *container.rbegin()) {
+            out << element;
+        }
+        else out << element << ", "s;
+    }
+    out << "}";
+    return out;
+}
+
+template <typename Term>
+
+ostream& operator<<(ostream& out, const vector<Term>& container) {
+    out << "[";
+    for (const Term& element : container) {
+        if (element == container[container.size() - 1]) {
+            out << element;
+        }
+        else out << element << ", "s;
+    }
+    out << "]";
+    return out;
+}
+
+template <typename KEY, typename VALUE>
+
+ostream& operator<<(ostream& out, const map<KEY, VALUE>& container) {
+    out << "<";
+    for (const auto& element : container) {
+        if (element == *container.rbegin()) {
+            out << "(" << element.first << ", "s << element.second << ")";
+        }
+        else out << "(" << element.first << ", "s << element.second << ")" << ", ";
+    }
+    out << ">";
+    return out;
+}
+
+template <typename Type>
+
+void Print(ostream& out, Type& data) {
+
+    for (const auto& element : data) {
+        if (element == *prev(data.end())) {
+            out << element;
+        }
+        else out << element << ", "s;
+    }
+}
+
+template <typename KEY, typename VALUE>
+
+void Print(ostream& out, const map<KEY, VALUE>& data) {
+
+    for (const auto& element : data) {
+        if (element == *data.rbegin()) {
+            out << "(" << element.first << ", "s << element.second << ")";
+        }
+        else out << "(" << element.first << ", "s << element.second << ")" << ", ";
+    }
+}
+
+
+
+int main() {
+    const vector<int> ages = { 10, 5, 2, 12 };
+    cout << ages << endl;
+    const set<string> cats = { "elfs"s, "orks"s, "dvorfs"s, "humans"s };
+    cout << cats << endl;
+
+    const map<string, int> cat_ages = {
+    {"elfs"s, 10},
+    {"orks"s, 5},
+    {"dvorfs"s, 2},
+    {"humans"s, 12}
+    };
+    cout << cat_ages << endl;
+
+    Print(cout, ages);
+    cout << endl;
+    Print(cout, cats);
+    cout << endl;
+    Print(cout, cat_ages);
+    system("pause>NULL");
+    return 0;
+}
