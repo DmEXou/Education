@@ -10,8 +10,7 @@
 
 using namespace std;
 
-const int MAX_RESULT_DOCUMENT_COUNT = 5;
-
+#define PrintExpression(expr) cout << (#expr) << " = "s << (expr) << endl
 
 int main() {
     vector <int> A = { 1,2,3,4,5,6,7,8,9 };
@@ -21,10 +20,18 @@ int main() {
     auto Lamda = [](int i) {
         return i == 3;
     };
+
     cout << ((find_if(A.begin(), A.end(), Lamda)) != A.end()) << endl;; //Поиск 3 по Вектору.
 
     cout << count(A.begin(), A.end(), 3) << endl; //Кол-во 3 в Векторе.
+    auto Lamda2 = [](int i) {
+        return i == 3;
+    };
+    cout << count_if(A.begin(), A.end(), Lamda2) << endl; //Кол-во 3 в Векторе.
 
+    PrintExpression(7*7);
+
+    cout << "Line number: "s << __LINE__ << endl;
     system("pause>NULL");
     return 0;
 }
