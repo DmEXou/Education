@@ -1,0 +1,23 @@
+#include <cstdlib>
+#include <iomanip>
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+void AssertImpl(const bool& expr, const string& expr_str, const string& str_fun, const string& str_file, const int& line, const string& hint = "") {
+    if (!expr) {
+        cout << str_file << "(" << line << "): " << str_fun << ": ASSERT(" << expr_str << ") failed. Hint: " << hint;
+        cout << endl;
+        abort();
+    }
+}
+
+#define ASSERT(expr) AssertImpl(expr, #expr, __FUNCTION__, __FILE__, __LINE__)
+#define ASSERT_HINT(expr, hint) AssertImpl(expr, #expr, __FUNCTION__, __FILE__, __LINE__, hint)
+
+int main() {
+    string hello = "hello"s;
+    ASSERT(!hello.empty());
+    ASSERT_HINT(2 + 2 == 5, "This will fail"s);
+}
