@@ -1,0 +1,30 @@
+struct Document {
+    int id;
+    double relevance;
+    int rating;
+    Document(int _id = 0, double _relevance = 0.0, int _rating = 0)
+        : id(_id)
+        , relevance(_relevance)
+        , rating(_rating)
+        {
+        }
+};
+
+class SearchServer {
+public:
+    template <typename StringCollection>
+    explicit SearchServer(const StringCollection& stop_words) {
+        string str;
+        if (typeid(stop_words).name() != typeid(str).name()) {
+            for (auto& stop : stop_words) {
+                str = stop;
+                stop_words_.insert(str);
+            }
+        }
+        else {
+            for (auto& stop : stop_words) {
+                str += stop;
+            }
+            SetStopWords(str);
+        }
+    }
