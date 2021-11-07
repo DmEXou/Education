@@ -95,3 +95,23 @@ int main() {
     system("pause>NULL");
     return 0;
 }
+/*
+Вывод бля класса. При 
+Rational(int numerator, int denominator)
+        : numerator_(numerator)
+        , denominator_(denominator) {
+ }
+
+ostream& operator<<(ostream& output, Rational rat) {
+    output << rat.Numerator() << "/" << rat.Denominator();
+    return output;
+}
+
+istream& operator>>(istream& input, Rational& rat) {
+    int i, j;
+    char dot;
+    input >> i >> dot >> j;
+    rat = Rational(i, j);
+    return input;
+}
+*/
