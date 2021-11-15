@@ -23,26 +23,49 @@ int main() {
     vector <int> A = { 1,2,3,4,5,6,7,8,9 };
     cout << boolalpha;
     cout << (find(A.begin(), A.end(), 3) != A.end()) << endl; //Поиск 3 по Вектору.
-
+///////////////////////////
     auto Lamda = [](int i) {
         return i == 3;
     };
 
     cout << ((find_if(A.begin(), A.end(), Lamda)) != A.end()) << endl;; //Поиск 3 по Вектору.
-
+///////////////////////////
     cout << count(A.begin(), A.end(), 3) << endl; //Кол-во 3 в Векторе.
+/////////////////////////// 
     auto Lamda2 = [](int i) {
         return i == 3;
     };
     cout << count_if(A.begin(), A.end(), Lamda2) << endl; //Кол-во 3 в Векторе.
-
+///////////////////////////
     PrintExpression(7*7);
 
     cout << "Line number: "s << __LINE__ << endl;
-    
+///////////////////////////    
     set<int> test = { 1, 1, 1, 2, 3, 4, 5, 5 };
     PrintRange(test.begin(), test.end());//
-    
-    system("pause>NULL");
-    return 0;
+///////////////////////////    
+    template <typename C, typename T>
+void EraseAndPrint(C contener, T erase_elem, T erase_begin, T erase_end ) {
+    auto iter = contener.begin() + erase_elem;
+    auto find_iter = find(contener.begin(), contener.end(), *iter);
+    contener.erase(find_iter);
+    PrintRange(contener.begin(), contener.end());
+    auto iter1 = contener.begin() + erase_begin;
+    auto iter2 = contener.begin() + erase_end;
+    contener.erase(iter1, iter2);
+    PrintRange(contener.begin(), contener.end());
 }
+
+template <typename Container>
+void EraseAndPrint(Container& container, int position, int range_begin, int range_end) {
+    container.erase(container.begin() + position);
+    PrintRange(container.begin(), container.end());
+    container.erase(container.begin() + range_begin, container.begin() + range_end);
+    PrintRange(container.begin(), container.end());
+}
+
+int main() {
+    vector<string> langs = { "Python"s, "Java"s, "C#"s, "Ruby"s, "C++"s };
+    EraseAndPrint(langs, 0, 0, 2);
+}
+///////////////////////////
