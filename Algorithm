@@ -12,6 +12,13 @@ using namespace std;
 
 #define PrintExpression(expr) cout << (#expr) << " = "s << (expr) << endl
 
+template <typename T>
+void PrintRange(T t, T u) {
+    for (auto it = t; it != u; it++) {
+        cout << *(it) << " ";
+    }
+}
+
 int main() {
     vector <int> A = { 1,2,3,4,5,6,7,8,9 };
     cout << boolalpha;
@@ -32,6 +39,10 @@ int main() {
     PrintExpression(7*7);
 
     cout << "Line number: "s << __LINE__ << endl;
+    
+    set<int> test = { 1, 1, 1, 2, 3, 4, 5, 5 };
+    PrintRange(test.begin(), test.end());//
+    
     system("pause>NULL");
     return 0;
 }
